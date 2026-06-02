@@ -166,10 +166,18 @@
                 <h3>${v.title}</h3>
                 <p>
                     <code>작성자 : ${v.user_id}</code> <br />
-                    <code>작성일시 ${v.created_at}</code>
+                    <code>작성일시 : ${v.created_at}</code>
                 </p>
                 <p>${v.content}</p>
             `;
+          // 삭제 기능
+          const rmBtn = document.createElement("button");
+          rmBtn.textContent = "삭제";
+          rmBtn.addEventListener("click", async () => {
+            // id
+            console.log("[삭제 버튼]", "게시물 ID", v.id);
+          });
+          post.append(rmBtn);
           postContainer.append(post);
         }
       }
