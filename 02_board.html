@@ -82,7 +82,11 @@
       <form id="updateForm">
         <label>
           글 ID :
-          <input name="id" disabled />
+          <!-- html input -->
+          <!-- <input name="id" disabled /> -->
+          <!-- form이 안 읽어줌 -->
+          <input name="id" readonly />
+          <!-- 폼이 데이터를 읽으면서 사용자의 수정을 막으려면 -->
         </label>
         <label>
           제목 :
@@ -181,7 +185,7 @@
         event.preventDefault();
         const formData = new FormData(event.target);
         console.log(...formData);
-        const id = formData.get("id") * 1; // 타입 에러 -> sql상 숫자화하는 간단한 방법 (* 1 로 연산 처리)
+        const id = formData.get("id");
         const title = formData.get("title");
         const content = formData.get("content");
         const { data, error } = await sb
