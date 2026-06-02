@@ -67,6 +67,8 @@
           내용 :
           <textarea name="content" required></textarea>
         </label>
+        <button>작성</button>
+        <!-- createdAt, userId는 자동으로 들어갈 예정 -->
       </form>
     </details>
     <script>
@@ -119,6 +121,14 @@
         //   localStorage.setItem("sb_refresh_token", data.session.refresh_token);
         //   console.log("토큰 저장 완료");
         // }
+      });
+
+      const writeForm = document.querySelector("#writeForm");
+      writeForm.addEventListener("submit", async (event) => {
+        console.log("writeForm");
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        console.log(...formData);
       });
     </script>
   </body>
