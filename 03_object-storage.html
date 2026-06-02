@@ -13,6 +13,7 @@
       <input type="file" name="file" accept="image/*" />
       <button>업로드</button>
     </form>
+    <section id="imageContainer"></section>
     <script>
       // 어차피 같은 source를 공유하면 localStorage를 쓸 수 있잖아요
       // 과감하게 로그인 로직 생략
@@ -20,6 +21,23 @@
       const SUPABASE_URL = "https://crbjutbtgzgtynuohxpf.supabase.co";
       const SUPABASE_PUB_KEY = "sb_publishable_dnoHoLjHEIEeRkMcDQpIRA_KWhVsD5D";
       const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUB_KEY);
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        const imageList = await sb.storage.from("image").list();
+        console.log(imageList);
+        const imageContainer = document.querySelector("#imageContainer");
+        for (const image of imageList.data) {
+          const response = await sb.storage
+            .from("image")
+            .getPublicUrl(image.name);
+          const publicUrl = response.data.publicUrl;
+          console.log(publicUrl);
+          const imageItem = document.createElement("img");
+          imageItem.src = publicUrl;
+          imageItem.width = 320;
+          imageContainer.append(imageItem);
+        }
+      });
 
       const uploadForm = document.querySelector("#uploadForm");
       uploadForm.addEventListener("submit", async (event) => {
