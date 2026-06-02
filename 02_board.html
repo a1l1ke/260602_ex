@@ -6,6 +6,18 @@
     <title>Supabase Board (Auth + Board + Comment)</title>
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px;
+        align-items: start;
+      }
+      textarea {
+        resize: none;
+      }
+    </style>
   </head>
   <body>
     <details>
@@ -26,7 +38,7 @@
         <button>가입</button>
       </form>
     </details>
-    <details open>
+    <details>
       <summary>로그인</summary>
       <form id="loginForm">
         <input
@@ -42,6 +54,19 @@
           required
         />
         <button>로그인</button>
+      </form>
+    </details>
+    <details open>
+      <summary>게시글 작성</summary>
+      <form id="writeForm">
+        <label>
+          제목 :
+          <input name="title" required />
+        </label>
+        <label>
+          내용 :
+          <textarea name="content" required></textarea>
+        </label>
       </form>
     </details>
     <script>
