@@ -38,6 +38,7 @@
           console.log(result);
           console.log("가입 완료");
         } catch (err) {
+          console.log(err);
           console.log("가입 실패");
         }
       }
@@ -55,9 +56,9 @@
         });
         console.log(res.status);
         console.log(res.ok);
-        const json = res.json();
+        const json = await res.json();
         if (!res.ok) {
-          throw new Error(json);
+          throw new Error(JSON.stringify(json));
         }
         return json;
       }
