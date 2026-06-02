@@ -8,12 +8,20 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
   <body>
+    <details open>
+      <summary>회원가입</summary>
+      <form id="joinForm">
+        <input type="email" placeholder="abc@abc.com" required />
+        <input type="password" placeholder="6자리 이상" required />
+        <button>가입</button>
+      </form>
+    </details>
     <script>
-      console.log(window.supabase);
+      //   console.log(window.supabase);
       const SUPABASE_URL = "https://crbjutbtgzgtynuohxpf.supabase.co";
       const SUPABASE_PUB_KEY = "sb_publishable_dnoHoLjHEIEeRkMcDQpIRA_KWhVsD5D";
       const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUB_KEY);
-      console.log(sb);
+      //   console.log(sb);
     </script>
   </body>
 </html>
