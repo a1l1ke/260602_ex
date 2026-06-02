@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Supabase Board (Auth + Board + Comment)</title>
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
-  <body></body>
+  <body>
+    <script>
+      console.log(window.supabase);
+      const SUPABASE_URL = "https://crbjutbtgzgtynuohxpf.supabase.co";
+      const SUPABASE_PUB_KEY = "sb_publishable_dnoHoLjHEIEeRkMcDQpIRA_KWhVsD5D";
+      const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUB_KEY);
+      console.log(sb);
+    </script>
+  </body>
 </html>
