@@ -29,6 +29,16 @@
         const file = event.target.file.files[0];
         const newFileName = `${crypto.randomUUID()}-${file.name}`;
         console.log(newFileName);
+
+        const bucketName = "image";
+        const result = await sb.storage
+          .from(bucketName)
+          .upload(newFileName, file);
+        console.log(result);
+        if (result?.error) {
+          console.log("에러발생", result.error);
+          return;
+        }
       });
     </script>
   </body>
