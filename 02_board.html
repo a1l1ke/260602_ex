@@ -72,6 +72,7 @@
       </form>
     </details>
     <details open>
+      <summary>게시글 목록</summary>
       <h1>게시글 목록</h1>
       <section id="postContainer"></section>
     </details>
@@ -140,7 +141,8 @@
           .insert([{ title, content }]);
         // 아직 select 권한이 없음.
         if (error) console.log("error", error);
-        console.log("data", data);
+        // console.log("data", data);
+        await renderPosts();
       });
 
       const postContainer = document.querySelector("#postContainer");
@@ -152,9 +154,24 @@
 
       async function renderPosts() {
         const { data, error } = await sb.from("posts").select("*");
-        // Policy 아직 없음
+        // Policy 아직 없음 -> 정책 추가
         if (error) console.log("error", error);
         console.log("data", data);
+        postContainer.innerHTML = "";
+        for (const v of data) {
+          console.log(v);
+          const post = document.createElement("div");
+          // TODO : 과제(?) - user_id(uuid) => user email을 표시하게
+          post.innerHTML = `
+                <h3>${v.title}</h3>
+                <p>
+                    <code>작성자 : ${v.user_id}</code> <br />
+                    <code>작성일시 ${v.created_at}</code>
+                </p>
+                <p>${v.content}</p>
+            `;
+          postContainer.append(post);
+        }
       }
     </script>
   </body>
