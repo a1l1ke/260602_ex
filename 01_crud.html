@@ -16,5 +16,22 @@
       />
       <button type="submit">가입</button>
     </form>
+    <script>
+      // https://supabase.com/dashboard/project/본인프로젝트ID
+      const SUPABASE_URL = "https://crbjutbtgzgtynuohxpf.supabase.co";
+      const SUPABASE_PUB_KEY = "sb_publishable_dnoHoLjHEIEeRkMcDQpIRA_KWhVsD5D";
+
+      // # 안빼먹기
+      const joinForm = document.querySelector("#join");
+      // submit 안 빼먹고 click이랑 안 헷갈리기
+      joinForm.addEventListener("submit", joinHandler);
+
+      async function joinHandler(event) {
+        event.preventDefault();
+        console.log("joinForm");
+      }
+
+      async function joinWithSupabase() {}
+    </script>
   </body>
 </html>
