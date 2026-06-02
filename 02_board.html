@@ -133,8 +133,8 @@
         const content = formData.get("content");
         const { data, error } = await sb
           .from("posts")
-          .insert([{ title, content }])
-          .select();
+          .insert([{ title, content }]);
+        // 아직 select 권한이 없음.
         if (error) console.log("error", error);
         console.log("data", data);
       });
