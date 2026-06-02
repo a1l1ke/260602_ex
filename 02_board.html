@@ -174,6 +174,24 @@
         console.log("화면 렌더링 완료");
       });
 
+      // Update
+      const updateForm = document.querySelector("#updateForm");
+      updateForm.addEventListener("submit", async (event) => {
+        console.log("updateForm");
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        console.log(...formData);
+        const id = formData.get("id") * 1; // 타입 에러 -> sql상 숫자화하는 간단한 방법 (* 1 로 연산 처리)
+        const title = formData.get("title");
+        const content = formData.get("content");
+        const { data, error } = await sb
+          .from("posts")
+          .update({ title, content })
+          .eq("id", id);
+        if (error) console.log("error", error);
+        await renderPosts();
+      });
+
       async function renderPosts() {
         const { data, error } = await sb.from("posts").select("*");
         // Policy 아직 없음 -> 정책 추가
@@ -222,6 +240,13 @@
             udBtn.addEventListener("click", async () => {
               // id
               console.log("[수정 버튼]", "게시물 ID", v.id);
+              // form -> name
+              console.log(updateForm.id);
+              console.log(updateForm.title);
+              console.log(updateForm.content);
+              updateForm.id.value = v.id;
+              updateForm.title.value = v.title;
+              updateForm.content.value = v.content;
             });
             post.append(udBtn);
           } else {
