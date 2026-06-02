@@ -56,7 +56,7 @@
         <button>로그인</button>
       </form>
     </details>
-    <details open>
+    <details>
       <summary>게시글 작성</summary>
       <form id="writeForm">
         <label>
@@ -70,6 +70,10 @@
         <button>작성</button>
         <!-- createdAt, userId는 자동으로 들어갈 예정 -->
       </form>
+    </details>
+    <details open>
+      <h1>게시글 목록</h1>
+      <section id="postContainer"></section>
     </details>
     <script>
       //   console.log(window.supabase);
@@ -138,6 +142,20 @@
         if (error) console.log("error", error);
         console.log("data", data);
       });
+
+      const postContainer = document.querySelector("#postContainer");
+      document.addEventListener("DOMContentLoaded", async () => {
+        console.log("DOMContentLoaded");
+        await renderPosts();
+        console.log("화면 렌더링 완료");
+      });
+
+      async function renderPosts() {
+        const { data, error } = await sb.from("posts").select("*");
+        // Policy 아직 없음
+        if (error) console.log("error", error);
+        console.log("data", data);
+      }
     </script>
   </body>
 </html>
