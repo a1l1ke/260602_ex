@@ -11,8 +11,18 @@
     <details open>
       <summary>회원가입</summary>
       <form id="joinForm">
-        <input type="email" placeholder="abc@abc.com" required />
-        <input type="password" placeholder="6자리 이상" required />
+        <input
+          name="join-email"
+          type="email"
+          placeholder="abc@abc.com"
+          required
+        />
+        <input
+          name="join-password"
+          type="password"
+          placeholder="6자리 이상"
+          required
+        />
         <button>가입</button>
       </form>
     </details>
@@ -22,6 +32,14 @@
       const SUPABASE_PUB_KEY = "sb_publishable_dnoHoLjHEIEeRkMcDQpIRA_KWhVsD5D";
       const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUB_KEY);
       //   console.log(sb);
+
+      const joinForm = document.querySelector("#joinForm");
+      joinForm.addEventListener("submit", async (event) => {
+        console.log("joinForm");
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        console.log(...formData);
+      });
     </script>
   </body>
 </html>
